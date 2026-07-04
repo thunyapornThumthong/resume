@@ -8,8 +8,10 @@
     var now = new Date();
     clockEl.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
   }
-  tick();
-  setInterval(tick, 1000);
+  if (clockEl) {
+    tick();
+    setInterval(tick, 1000);
+}
 
   /* ---- fluctuating system load widget ---- */
   var slFill = document.getElementById('sl-fill');
@@ -17,8 +19,12 @@
     var val = 25 + Math.round(Math.random()*40);
     slFill.style.width = val + '%';
   }
-  fluctuateLoad();
-  if(!reduceMotion){ setInterval(fluctuateLoad, 2200); }
+ if (slFill) {
+    fluctuateLoad();
+    if(!reduceMotion){
+        setInterval(fluctuateLoad,2200);
+    }
+}
 
   /* ---- top nav: scroll to section + highlight active link ---- */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.topnav a'));
